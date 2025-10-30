@@ -44,4 +44,14 @@ public class UsuarioServiceImpl implements UsuarioService {
     public Usuario create(Usuario usuario) {
         return null;
     }
+
+    @Override
+    public Optional<Usuario> login(String email, String password) {
+        return Optional.empty();
+    }
+
+    @Override
+    public Usuario registrar(Usuario usuario) {
+        return null;
+    }
 }

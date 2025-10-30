@@ -22,7 +22,9 @@ public class Usuario {
     private String nombre;
     private String apellido;
     private String correo;
-    private String contrasenia;
+    private String password;
+    private String email;
+
     @ManyToOne
     @JoinColumn(name ="id_rol", nullable = false)
     private Rol rol;

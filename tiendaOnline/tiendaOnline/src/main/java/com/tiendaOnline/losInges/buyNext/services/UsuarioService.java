@@ -15,4 +15,7 @@ public interface UsuarioService {
     boolean deleteById(long id);
 
     Usuario create(Usuario usuario);
+    Optional<Usuario> login(String email, String password);
+
+    Usuario registrar(Usuario usuario);
 }
