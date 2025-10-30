@@ -19,10 +19,12 @@ public class Usuario {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Id
     private long idUsuario;
+    private String nombre;
+    private String apellido;
     private String correo;
     private String contrasenia;
-    @OneToMany(mappedBy = "id_rol", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    private Set<Rol> roles = new HashSet<>();
-    @OneToOne(mappedBy = "id_persona", cascade = CascadeType.ALL)
-    private Persona persona;
+    @ManyToOne
+    @JoinColumn(name ="id_rol", nullable = false)
+    private Rol rol;
+
 }

@@ -1,6 +1,5 @@
 package com.tiendaOnline.losInges.buyNext.services;
 
-import com.tiendaOnline.losInges.buyNext.entities.Cliente;
 import com.tiendaOnline.losInges.buyNext.entities.DetallePedido;
 
 import java.util.List;

@@ -23,6 +23,6 @@ public class Resenia {
     private int calificacion;
     private LocalDateTime fecha;
     @ManyToOne
-    private Cliente cliente;
+    private Usuario usuario;
 
 }

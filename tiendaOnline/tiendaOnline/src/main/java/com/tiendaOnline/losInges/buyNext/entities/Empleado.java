@@ -17,8 +17,8 @@ public class Empleado {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long idEmpleado;
-    @OneToOne(mappedBy = "id_persona", cascade = CascadeType.ALL)
-    private Persona idPersona;
-    @OneToOne(mappedBy = "id_usuario", cascade = CascadeType.ALL)
-    private Usuario idUsuario;
+
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "id_usuario")
+    private Usuario usuario;
 }

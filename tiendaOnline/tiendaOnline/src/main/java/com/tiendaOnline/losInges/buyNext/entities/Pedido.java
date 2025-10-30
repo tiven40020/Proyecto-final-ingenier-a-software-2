@@ -25,6 +25,6 @@ public class Pedido {
     @ManyToOne
     private Estado estado;
     @ManyToOne()
-    private Cliente cliente;
+    private Usuario usuario;
 
 }
