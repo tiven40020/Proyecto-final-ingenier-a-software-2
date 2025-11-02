@@ -1,4 +1,4 @@
-package com.tiendaOnline.losInges.buyNext.dto;
+package com.tiendaOnline.losInges.buyNext.dto.request;
 
 import jakarta.validation.constraints.*;
 

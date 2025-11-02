@@ -25,7 +25,7 @@ public class Resenia {
     @ManyToOne
     private Usuario usuario;
     @ManyToOne
-    @JoinColumn(name = "id_producto")
+    @JoinColumn(name = "id_producto", nullable = false)
     private Producto producto;
 
 }

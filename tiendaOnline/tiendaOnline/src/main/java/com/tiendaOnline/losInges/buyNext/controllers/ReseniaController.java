@@ -1,5 +1,7 @@
 package com.tiendaOnline.losInges.buyNext.controllers;
 
+import com.tiendaOnline.losInges.buyNext.dto.request.ReseniaRequestDTO;
+import com.tiendaOnline.losInges.buyNext.dto.response.ReseniaResponseDTO;
 import com.tiendaOnline.losInges.buyNext.entities.Resenia;
 import com.tiendaOnline.losInges.buyNext.services.ReseniaService;
 import org.springframework.http.ResponseEntity;
@@ -30,9 +32,22 @@ public class ReseniaController {
     }
 
     @PostMapping
-    public ResponseEntity<Resenia> createResenia(@RequestBody Resenia resenia) {
-        Resenia nuevaResenia = reseniaService.create(resenia);
-        return ResponseEntity.ok(nuevaResenia);
+    public ResponseEntity<ReseniaResponseDTO> createResenia(@RequestBody ReseniaRequestDTO dto) {
+        Resenia nueva = new Resenia();
+        nueva.setComentario(dto.comentario());
+        nueva.setCalificacion(dto.calificacion());
+
+        Resenia guardada = reseniaService.create(dto.idUsuario(), dto.idProducto(), nueva);
+
+        ReseniaResponseDTO response = new ReseniaResponseDTO(
+                guardada.getIdResenia(),
+                guardada.getComentario(),
+                guardada.getCalificacion(),
+                guardada.getUsuario().getNombre(),
+                guardada.getFecha()
+        );
+
+        return ResponseEntity.ok(response);
     }
 
     @PutMapping("/{id}")
@@ -49,5 +64,15 @@ public class ReseniaController {
         } else {
             return ResponseEntity.notFound().build();
         }
+    }
+
+    @GetMapping("/producto/{idProducto}")
+    public ResponseEntity<List<ReseniaResponseDTO>> obtenerReseniasPorProducto(@PathVariable Long idProducto) {
+        return ResponseEntity.ok(reseniaService.getByProducto(idProducto));
+    }
+
+    @GetMapping("/calificacion/{idProducto}")
+    public ResponseEntity<Double> obtenerCalificacionPromedio(@PathVariable Long idProducto) {
+        return ResponseEntity.ok(reseniaService.obtenerPromedioCalificacion(idProducto));
     }
 }

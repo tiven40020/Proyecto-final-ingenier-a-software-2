@@ -1,6 +1,6 @@
 package com.tiendaOnline.losInges.buyNext.controllers;
 
-import com.tiendaOnline.losInges.buyNext.dto.LoginRequest;
+import com.tiendaOnline.losInges.buyNext.dto.request.LoginRequest;
 import com.tiendaOnline.losInges.buyNext.entities.Usuario;
 import com.tiendaOnline.losInges.buyNext.services.UsuarioService;
 import org.springframework.http.ResponseEntity;

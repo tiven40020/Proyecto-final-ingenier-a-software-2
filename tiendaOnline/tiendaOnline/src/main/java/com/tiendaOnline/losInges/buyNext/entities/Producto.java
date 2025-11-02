@@ -27,6 +27,7 @@ public class Producto {
     private int stock;
     private String imagen;
     @ManyToOne
+    @JsonIgnoreProperties("productos")
     private Categoria categoria;
     @OneToMany(mappedBy = "producto", cascade = CascadeType.ALL)
     @JsonIgnoreProperties("producto")
