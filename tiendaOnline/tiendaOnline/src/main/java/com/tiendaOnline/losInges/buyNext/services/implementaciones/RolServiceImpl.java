@@ -25,8 +25,12 @@ public class RolServiceImpl implements RolService {
     }
 
     @Override
-    public Optional<Rol> update(long id, Rol rol) {
-        return Optional.empty();
+    public Optional<Rol> update(long id, Rol rolActualizado) {
+        return rolRepository.findById(id)
+                .map(rol -> {
+                    rol.setNombre(rolActualizado.getNombre());
+                    return rolRepository.save(rol);
+                });
     }
 
     @Override
@@ -41,6 +45,6 @@ public class RolServiceImpl implements RolService {
 
     @Override
     public Rol create(Rol rol) {
-        return null;
+        return rolRepository.save(rol);
     }
 }

@@ -24,5 +24,8 @@ public class Resenia {
     private LocalDateTime fecha;
     @ManyToOne
     private Usuario usuario;
+    @ManyToOne
+    @JoinColumn(name = "id_producto")
+    private Producto producto;
 
 }

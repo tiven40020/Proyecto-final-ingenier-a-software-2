@@ -27,8 +27,17 @@ public class ProductoServiceImpl implements ProductoService {
     }
 
     @Override
-    public Optional<Producto> update(long id, Producto producto) {
-        return Optional.empty();
+    public Optional<Producto> update(long id, Producto productoActualizado) {
+        return productoRepository.findById(id)
+                .map(producto -> {
+                    producto.setNombre(productoActualizado.getNombre());
+                    producto.setDescripcion(productoActualizado.getDescripcion());
+                    producto.setPrecio(productoActualizado.getPrecio());
+                    producto.setStock(productoActualizado.getStock());
+                    producto.setImagen(productoActualizado.getImagen());
+                    producto.setCategoria(productoActualizado.getCategoria());
+                    return productoRepository.save(producto);
+                });
     }
 
     @Override
@@ -43,6 +52,6 @@ public class ProductoServiceImpl implements ProductoService {
 
     @Override
     public Producto create(Producto producto) {
-        return null;
+        return productoRepository.save(producto);
     }
 }

@@ -27,8 +27,14 @@ public class DetallePedidoServiceImpl implements DetallePedidoService {
     }
 
     @Override
-    public Optional<DetallePedido> update(long id, DetallePedido detallePedido) {
-        return Optional.empty();
+    public Optional<DetallePedido> update(long id, DetallePedido detallePedidoActualizado) {
+        return detallePedidoRepository.findById(id)
+                .map(detallePedido -> {
+                    detallePedido.setPrecio(detallePedidoActualizado.getPrecio());
+                    detallePedido.setCantidad(detallePedidoActualizado.getCantidad());
+                    detallePedido.setProducto(detallePedidoActualizado.getProducto());
+                    return detallePedidoRepository.save(detallePedido);
+                });
     }
 
     @Override
@@ -43,6 +49,6 @@ public class DetallePedidoServiceImpl implements DetallePedidoService {
 
     @Override
     public DetallePedido create(DetallePedido detallePedido) {
-        return null;
+        return detallePedidoRepository.save(detallePedido);
     }
 }

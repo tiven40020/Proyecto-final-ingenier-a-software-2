@@ -23,8 +23,9 @@ public class Usuario {
     private String apellido;
     private String correo;
     private String contrasenia;
+
     @ManyToOne
-    @JoinColumn(name ="id_rol", nullable = false)
+    @JoinColumn(name ="id_rol", nullable = true)
     private Rol rol;
 
 }

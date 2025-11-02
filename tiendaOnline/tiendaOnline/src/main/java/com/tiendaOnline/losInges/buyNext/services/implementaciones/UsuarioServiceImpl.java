@@ -26,8 +26,16 @@ public class UsuarioServiceImpl implements UsuarioService {
     }
 
     @Override
-    public Optional<Usuario> update(long id, Usuario usuario) {
-        return Optional.empty();
+    public Optional<Usuario> update(long id, Usuario usuarioActualizado) {
+        return usuarioRepository.findById(id)
+                .map(usuario -> {
+                    usuario.setNombre(usuarioActualizado.getNombre());
+                    usuario.setApellido(usuarioActualizado.getApellido());
+                    usuario.setCorreo(usuarioActualizado.getCorreo());
+                    usuario.setContrasenia(usuarioActualizado.getContrasenia());
+                    usuario.setRol(usuarioActualizado.getRol());
+                    return usuarioRepository.save(usuario);
+                });
     }
 
     @Override
@@ -42,6 +50,14 @@ public class UsuarioServiceImpl implements UsuarioService {
 
     @Override
     public Usuario create(Usuario usuario) {
-        return null;
+        if (usuarioRepository.existsByCorreo(usuario.getCorreo())){
+            throw new RuntimeException("El correo ya esta registrado");
+        }
+        return usuarioRepository.save(usuario);
+    }
+
+    @Override
+    public Optional<Usuario> login(String correo, String contrasenia) {
+        return usuarioRepository.findByCorreoAndContrasenia(correo, contrasenia);
     }
 }

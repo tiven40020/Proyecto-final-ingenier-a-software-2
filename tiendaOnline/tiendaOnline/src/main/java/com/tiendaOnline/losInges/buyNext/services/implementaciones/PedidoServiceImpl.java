@@ -25,8 +25,14 @@ public class PedidoServiceImpl implements PedidoService {
     }
 
     @Override
-    public Optional<Pedido> update(long id, Pedido pedido) {
-        return Optional.empty();
+    public Optional<Pedido> update(long id, Pedido pedidoActualizado) {
+        return pedidoRepository.findById(id)
+                .map(pedido -> {
+                    pedido.setFecha(pedidoActualizado.getFecha());
+                    pedido.setTotal(pedidoActualizado.getTotal());
+                    pedido.setUsuario(pedidoActualizado.getUsuario());
+                    return pedidoRepository.save(pedido);
+                });
     }
 
     @Override
@@ -41,6 +47,6 @@ public class PedidoServiceImpl implements PedidoService {
 
     @Override
     public Pedido create(Pedido pedido) {
-        return null;
+        return pedidoRepository.save(pedido);
     }
 }

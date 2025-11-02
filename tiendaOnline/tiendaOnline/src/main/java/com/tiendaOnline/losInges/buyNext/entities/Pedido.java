@@ -22,8 +22,6 @@ public class Pedido {
     private long idPedido;
     private LocalDateTime fecha;
     private double total;
-    @ManyToOne
-    private Estado estado;
     @ManyToOne()
     private Usuario usuario;
 

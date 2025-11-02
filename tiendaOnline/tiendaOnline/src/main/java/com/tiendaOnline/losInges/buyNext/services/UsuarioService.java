@@ -10,9 +10,11 @@ public interface UsuarioService {
 
     List<Usuario> getAll();
 
-    Optional<Usuario> update(long id, Usuario usuario);
+    Optional<Usuario> update(long id, Usuario usuarioActualizado);
 
     boolean deleteById(long id);
 
     Usuario create(Usuario usuario);
+
+    Optional<Usuario> login(String correo, String password);
 }

@@ -26,8 +26,13 @@ public class CategoriaServiceImpl implements CategoriaService {
     }
 
     @Override
-    public Optional<Categoria> update(long id, Categoria categoria) {
-        return Optional.empty();
+    public Optional<Categoria> update(long id, Categoria categoriaActualizada) {
+        return categoriaRepository.findById(id)
+                .map(categoria -> {
+                    categoria.setNombre(categoriaActualizada.getNombre());
+                    categoria.setDescripcion(categoriaActualizada.getDescripcion());
+                    return categoriaRepository.save(categoria);
+                });
     }
 
     @Override
@@ -42,6 +47,6 @@ public class CategoriaServiceImpl implements CategoriaService {
 
     @Override
     public Categoria create(Categoria categoria) {
-        return null;
+        return categoriaRepository.save(categoria);
     }
 }

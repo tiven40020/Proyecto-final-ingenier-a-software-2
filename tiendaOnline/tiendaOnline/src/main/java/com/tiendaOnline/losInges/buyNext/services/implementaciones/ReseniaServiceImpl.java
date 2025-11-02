@@ -27,8 +27,13 @@ public class ReseniaServiceImpl implements ReseniaService {
     }
 
     @Override
-    public Optional<Resenia> update(long id, Resenia resenia) {
-        return Optional.empty();
+    public Optional<Resenia> update(long id, Resenia reseniaActualizada) {
+        return reseniaRepository.findById(id)
+                .map(resenia -> {
+                    resenia.setComentario(reseniaActualizada.getComentario());
+                    resenia.setCalificacion(reseniaActualizada.getCalificacion());
+                    return reseniaRepository.save(resenia);
+                });
     }
 
     @Override
@@ -43,6 +48,6 @@ public class ReseniaServiceImpl implements ReseniaService {
 
     @Override
     public Resenia create(Resenia resenia) {
-        return null;
+        return reseniaRepository.save(resenia);
     }
 }
