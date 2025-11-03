@@ -7,6 +7,8 @@ public interface ProductoService {
 
     Optional<Producto> getById(long id);
 
+    Optional<Producto> getProductoByNombre(String nombre);
+
     List<Producto> getAll();
 
     Optional<Producto> update(long id, Producto producto);

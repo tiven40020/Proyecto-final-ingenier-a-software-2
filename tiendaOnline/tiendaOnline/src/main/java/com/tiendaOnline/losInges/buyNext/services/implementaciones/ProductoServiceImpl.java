@@ -16,9 +16,15 @@ public class ProductoServiceImpl implements ProductoService {
     public ProductoServiceImpl(ProductoRepository productoRepository){
         this.productoRepository = productoRepository;
     }
+
     @Override
     public Optional<Producto> getById(long id) {
         return productoRepository.findById(id);
+    }
+
+    @Override
+    public Optional<Producto> getProductoByNombre(String nombre) {
+        return productoRepository.getProductoByNombre(nombre);
     }
 
     @Override

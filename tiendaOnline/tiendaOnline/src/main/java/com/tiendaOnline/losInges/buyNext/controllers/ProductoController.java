@@ -30,6 +30,13 @@ public class ProductoController {
                 .orElseGet(() -> ResponseEntity.notFound().build());
     }
 
+    @GetMapping("/ByName/{nombre}")
+    public ResponseEntity<Producto> getProductoByNombre(@PathVariable String nombre) {
+        return productoService.getProductoByNombre(nombre)
+                .map(ResponseEntity::ok)
+                .orElseGet(() -> ResponseEntity.notFound().build());
+    }
+
     @PostMapping
     public ResponseEntity<Producto> createProducto(@RequestBody Producto nuevoProducto) {
         Producto productoCreado = productoService.create(nuevoProducto);

@@ -50,10 +50,14 @@ public class UsuarioServiceImpl implements UsuarioService {
 
     @Override
     public Usuario create(Usuario usuario) {
-        if (usuarioRepository.existsByCorreo(usuario.getCorreo())){
-            throw new RuntimeException("El correo ya esta registrado");
+        try{
+            if (usuarioRepository.existsByCorreo(usuario.getCorreo())){
+                throw new RuntimeException("El correo ya esta registrado");
+            }
+            return usuarioRepository.save(usuario);
+        }catch (Exception e){
+            return null;
         }
-        return usuarioRepository.save(usuario);
     }
 
     @Override
