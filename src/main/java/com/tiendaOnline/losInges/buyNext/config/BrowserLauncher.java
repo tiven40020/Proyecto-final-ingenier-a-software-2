@@ -7,7 +7,7 @@ import java.net.URI;
 
 @Configuration
 public class BrowserLauncher {
-
+/*
     @EventListener(ApplicationReadyEvent.class)
     public void openBrowserAfterStartup() {
         String swaggerUrl = "http://localhost:8080/swagger-ui.html";
@@ -57,5 +57,5 @@ public class BrowserLauncher {
         } catch (Exception e) {
             System.err.println("Error en método alternativo: " + e.getMessage());
         }
-    }
+    }*/
 }
